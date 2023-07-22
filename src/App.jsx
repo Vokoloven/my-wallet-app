@@ -9,22 +9,21 @@ import { wagmiConfig, ethereumClient } from 'web3Modal';
 import { Web3Modal } from '@web3modal/react';
 
 export const App = () => {
-    const [ready, setReady] = useState(false);
-    useFonts();
+    // const [ready, setReady] = useState(false);
+    // useFonts();
 
-    useEffect(() => {
-        setReady(true);
-    }, []);
+    // useEffect(() => {
+    //     setReady(true);
+    // }, []);
 
     return (
         <>
             <CssBaseline />
             <ThemeProvider theme={theme}>
-                {ready ? (
-                    <WagmiConfig config={wagmiConfig}>
-                        <Home />
-                    </WagmiConfig>
-                ) : null}
+                <WagmiConfig config={wagmiConfig}>
+                    <Home />
+                </WagmiConfig>
+                )
                 <Web3Modal
                     projectId={import.meta.env.VITE_PROJECT_ID}
                     ethereumClient={ethereumClient}
