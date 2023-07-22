@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import TextField from '@mui/material/TextField';
-import { sxInput } from 'theme';
+import { sxInput } from '../../theme';
 
 export const Input = ({ input: { id, label } }) => {
     return (

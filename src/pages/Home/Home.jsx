@@ -1,7 +1,7 @@
-import { CustomAppBar } from 'components/AppBar';
+import { CustomAppBar } from '../../components/AppBar';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import { Form } from 'components/Form';
+import { Form } from '../../components/Form';
 import Box from '@mui/material/Box';
 
 export const Home = () => {

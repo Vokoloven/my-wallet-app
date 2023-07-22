@@ -1,8 +1,8 @@
-import { Input } from 'components/Input';
+import { Input } from '../../components/Input';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { sxButtonOutlined } from 'theme';
-import { walletInputs } from 'components/Input';
+import { sxButtonOutlined } from '../../theme';
+import { walletInputs } from '../../components/Input';
 
 export const Form = () => {
     return (
