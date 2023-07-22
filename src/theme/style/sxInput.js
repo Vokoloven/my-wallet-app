@@ -1,24 +1,27 @@
-export const sxInput = () => {
+export const sxInput = (error) => {
+    const paletteName = error ? 'error' : 'secondary';
+
     const sx = {
         '&:not(:last-child)': {
             mb: 2,
         },
+        '& label': { color: `${paletteName}.main` },
         '& label.Mui-focused': {
-            color: 'secondary.dark',
-        },
-        '& .MuiOutlinedInput-root.Mui-focused': {
-            '& fieldset': {
-                borderColor: 'secondary.dark',
-            },
+            color: `${paletteName}.dark`,
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
-                borderColor: 'secondary.main',
+                borderColor: `${paletteName}.main`,
+            },
+        },
+        '& .MuiOutlinedInput-root.Mui-focused': {
+            '& fieldset': {
+                borderColor: `${paletteName}.dark`,
             },
         },
         '&:hover .MuiOutlinedInput-root': {
             '& fieldset': {
-                borderColor: 'secondary.dark',
+                borderColor: `${paletteName}.dark`,
             },
         },
     };

@@ -2,7 +2,7 @@
 import TextField from '@mui/material/TextField';
 import { sxInput } from '../../theme';
 
-export const Input = ({ input: { id, label }, register }) => {
+export const Input = ({ input: { id, label }, register, error }) => {
     const { ref: inputRef, ...args } = register(id);
 
     return (
@@ -10,9 +10,11 @@ export const Input = ({ input: { id, label }, register }) => {
             id={id}
             label={label}
             variant="outlined"
-            sx={{ ...sxInput() }}
             inputRef={inputRef}
             {...args}
+            sx={{ ...sxInput(!!error[id]) }}
+            error={!!error[id]}
+            helperText={error[id]?.message}
         />
     );
 };
