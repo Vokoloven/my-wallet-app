@@ -3,18 +3,29 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { sxButtonOutlined } from '../../theme';
 import { walletInputs } from '../../components/Input';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { schema } from '../../validation';
 
 export const Form = () => {
+    const { register, handleSubmit } = useForm({
+        resolver: yupResolver(schema),
+    });
+
+    const onSubmit = (data, e) => console.log(data, e);
+    const onError = (errors, e) => console.log(errors, e);
+
     return (
         <Box
             component={'form'}
+            onSubmit={handleSubmit(onSubmit, onError)}
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
             }}
         >
             {walletInputs.map((input) => (
-                <Input key={input.id} input={input} />
+                <Input key={input.id} input={input} register={register} />
             ))}
             <Button
                 aria-label="Submit Data"
