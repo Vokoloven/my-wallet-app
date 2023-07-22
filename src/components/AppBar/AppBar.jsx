@@ -10,8 +10,8 @@ import { useFetchData } from 'hooks';
 import { handleButtonContent } from './handleButtonContent';
 
 export const CustomAppBar = () => {
-    const { open } = useWeb3Modal();
-    const { address, data, isConnected } = useFetchData();
+    // const { open } = useWeb3Modal();
+    // const { address, data, isConnected } = useFetchData();
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -36,12 +36,12 @@ export const CustomAppBar = () => {
                         sx={{ ...sxButtonOutlined(), textTransform: 'none' }}
                         onClick={() => open()}
                     >
-                        {handleButtonContent(
+                        {/* {handleButtonContent(
                             isConnected,
                             address,
                             Typography,
                             data
-                        )}
+                        )} */}
                     </Button>
                 </Toolbar>
             </AppBar>
