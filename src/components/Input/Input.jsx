@@ -15,6 +15,7 @@ export const Input = ({ input: { id, label }, register, error }) => {
             sx={{ ...sxInput(!!error[id]) }}
             error={!!error[id]}
             helperText={error[id]?.message}
+            multiline
         />
     );
 };

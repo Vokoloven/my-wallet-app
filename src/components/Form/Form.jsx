@@ -7,6 +7,7 @@ import { walletInputs } from '../../components/Input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from '../../validation';
+import { inputConverter } from './inputConvertere';
 
 export const Form = () => {
     const [error, setError] = useState({});
@@ -23,10 +24,8 @@ export const Form = () => {
     const onError = (errors) => setError(errors);
 
     const handleChange = (e) => {
-        if (e.target.id === 'balance') {
-            const balance = e.target.value.replace(/[^\d.]/gi, '');
-            setValue('balance', balance);
-        }
+        const { id, value } = e.target;
+        inputConverter(id, value, setValue);
     };
 
     return (
