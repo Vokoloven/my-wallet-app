@@ -2,7 +2,7 @@ export const handleButtonContent = (isConnected, address, Typography, data) => {
     const formatAddress = (address) => {
         if (address) {
             const start = address.match(/^0x[a-fA-F0-9]{3}/);
-            const end = address.match(/[a-fA-F0-9]{0,4}$/i);
+            const end = address.match(/[a-fA-F0-9]{0,4}$/);
             return `${start[0]}...${end}`;
         }
     };
