@@ -18,10 +18,12 @@ export const handleButtonContent = (isConnected, address, Typography, data) => {
     if (isConnected) {
         return (
             <>
-                <Typography sx={{ mr: 2 }}>
-                    {formatBalance(data.formatted)}
-                </Typography>
-                <Typography>{formatAddress(address)}</Typography>
+                {data && (
+                    <Typography sx={{ mr: 2 }}>
+                        {formatBalance(data.formatted)}
+                    </Typography>
+                )}
+                {address && <Typography>{formatAddress(address)}</Typography>}
             </>
         );
     } else {
