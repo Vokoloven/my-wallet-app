@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+#Misc
+.prettierrc.json
+
+#env
+.env
