@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { useFonts } from 'hooks';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from 'theme';
+import { Home } from 'pages/Home';
+import { WagmiConfig } from 'wagmi';
+import { wagmiConfig, ethereumClient } from 'web3Modal';
+import { Web3Modal } from '@web3modal/react';
 
-function App() {
-  const [count, setCount] = useState(0)
+export const App = () => {
+    const [ready, setReady] = useState(false);
+    useFonts();
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    useEffect(() => {
+        setReady(true);
+    }, []);
 
-export default App
+    return (
+        <>
+            <CssBaseline />
+            <ThemeProvider theme={theme}>
+                {ready ? (
+                    <WagmiConfig config={wagmiConfig}>
+                        <Home />
+                    </WagmiConfig>
+                ) : null}
+                <Web3Modal
+                    projectId={import.meta.env.VITE_PROJECT_ID}
+                    ethereumClient={ethereumClient}
+                />
+            </ThemeProvider>
+        </>
+    );
+};
