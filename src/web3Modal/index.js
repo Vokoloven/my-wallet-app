@@ -1,3 +1,3 @@
-// import { wagmiConfig, ethereumClient } from './config';
+import { wagmiConfig, ethereumClient } from './config';
 
-// export { wagmiConfig, ethereumClient };
+export { wagmiConfig, ethereumClient };
