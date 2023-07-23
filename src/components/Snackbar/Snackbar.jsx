@@ -19,7 +19,11 @@ export const CustomizedSnackbar = ({
     const { open, setOpen } = useSnackbar(isSuccess, isError);
     return (
         <>
-            <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+            <Snackbar
+                open={open}
+                autoHideDuration={5000}
+                onClose={handleClose.bind(null, setOpen)}
+            >
                 <Alert
                     onClose={handleClose.bind(null, setOpen)}
                     severity={handleTypeAlert(isError, isSuccess)}
