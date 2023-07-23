@@ -7,15 +7,11 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Loader } from '../Loader';
 import { sxButtonOutlined } from '../../theme';
-import { handleClose } from './alertDialogHandlers';
+import { handleClose, handleSubmit } from './alertDialogHandlers';
 
 export const AlertDialog = ({
     props: { open, transaction, address, sendTransaction, isLoading, setOpen },
 }) => {
-    const handleSubmit = () => {
-        sendTransaction();
-    };
-
     return (
         <div>
             <Dialog
@@ -47,7 +43,7 @@ export const AlertDialog = ({
                         Disagree
                     </Button>
                     <Button
-                        onClick={handleSubmit}
+                        onClick={handleSubmit.bind(null, sendTransaction)}
                         sx={{ ...sxButtonOutlined() }}
                         autoFocus
                         disabled={isLoading ? true : false}
