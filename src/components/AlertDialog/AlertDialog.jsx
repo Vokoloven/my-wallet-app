@@ -36,7 +36,7 @@ export const AlertDialog = ({
                 </DialogContent>
                 <DialogActions>
                     <Button
-                        onClick={handleClose}
+                        onClick={handleClose.bind(null, setOpen)}
                         sx={{ ...sxButtonOutlined() }}
                         disabled={isLoading ? true : false}
                     >
