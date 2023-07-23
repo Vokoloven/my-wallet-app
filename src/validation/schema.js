@@ -10,6 +10,6 @@ export const schema = yup.object().shape({
         .required(),
     balance: yup
         .string()
-        .matches(balance, 'Wrong format: x.xxx(3 digits after ".")')
+        .matches(balance, 'Please fill correct value, at least(x.x)')
         .required(),
 });

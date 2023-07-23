@@ -11,16 +11,25 @@ import { inputConverter } from './inputConvertere';
 
 export const Form = () => {
     const [error, setError] = useState({});
+    const [transaction, setTransaction] = useState({
+        address: '',
+        balance: '',
+    });
+
     const { register, handleSubmit, setValue } = useForm({
         resolver: yupResolver(schema),
     });
 
-    const onSubmit = (data) => {
-        setError({});
-        ['balance', 'address'].map((item) => setValue(item, ''));
+    console.log(transaction);
 
-        console.log(data);
+    const onSubmit = (data) => {
+        setTransaction(data);
+        setError({});
+        setTimeout(() => {
+            ['balance', 'address'].map((item) => setValue(item, ''));
+        }, 0);
     };
+
     const onError = (errors) => setError(errors);
 
     const handleChange = (e) => {

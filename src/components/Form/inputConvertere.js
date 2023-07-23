@@ -6,12 +6,10 @@ export const inputConverter = (id, value, setValue) => {
         const reAddress = '0x' + (address?.[2] ? address?.[2] : '');
         setValue('address', reAddress);
     } else if (id === 'balance') {
-        const balance = value.replace(/[^\d]/gi, '').match(/([\d])(\d{0,3})/);
-        const reBalance =
-            (balance?.[1] ? balance[1] : '') +
-            '.' +
-            (balance?.[2] ? balance[2] : '');
+        const balance = value.match(/^([\d]{0,6}?)(\.?)([\d]{0,6})?$/);
 
+        const reBalance =
+            (balance?.[0] ? balance?.[0] : '') + (balance?.[2] ? '' : '.');
         setValue('balance', reBalance);
     }
 };
