@@ -11,6 +11,7 @@ import { inputConverter } from './inputConverter';
 import { AlertDialog } from '../AlertDialog/AlertDialog';
 import { useFetchData, useTransaction } from '../../hooks';
 import { MouseOverPopover } from '../Popover';
+import { CustomizedSnackbar } from '../Snackbar';
 
 export const Form = () => {
     const { address, isConnected } = useFetchData();
@@ -58,6 +59,13 @@ export const Form = () => {
     useEffect(() => {
         if (isError || isSuccess) {
             setOpen(false);
+            const timerId = setTimeout(() => {
+                ['balance', 'address'].map((item) => setValue(item, ''));
+            }, 0);
+
+            return () => {
+                clearTimeout(timerId);
+            };
         }
     }, [isError, isSuccess, setValue]);
 
@@ -109,6 +117,7 @@ export const Form = () => {
                     isLoading,
                 }}
             />
+            <CustomizedSnackbar props={{ isError, isSuccess }} />
         </>
     );
 };

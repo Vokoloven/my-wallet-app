@@ -6,6 +6,9 @@ export const useTransaction = (transaction) => {
         useSendTransaction({
             to: transaction.address,
             value: parseEther(transaction.balance),
+            onError(error) {
+                console.log('Error', error);
+            },
         });
 
     return { sendTransaction, isLoading, error, isError, isSuccess };
