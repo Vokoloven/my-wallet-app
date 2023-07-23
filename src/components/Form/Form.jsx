@@ -7,7 +7,7 @@ import { walletInputs } from '../../components/Input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from '../../validation';
-import { inputConverter } from './inputConvertere';
+import { inputConverter } from './inputConverter';
 import { AlertDialog } from '../AlertDialog/AlertDialog';
 import { useFetchData } from '../../hooks';
 import { MouseOverPopover } from '../Popover';

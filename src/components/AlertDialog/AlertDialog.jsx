@@ -6,7 +6,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export const AlertDialog = ({ props: { open, handleClose, transaction } }) => {
+export const AlertDialog = ({
+    props: { open, handleClose, transaction, address },
+}) => {
     return (
         <div>
             <Dialog
@@ -15,14 +17,18 @@ export const AlertDialog = ({ props: { open, handleClose, transaction } }) => {
                 aria-labelledby="alert-transaction"
                 aria-describedby="confirm-transaction"
                 disableAutoFocus
+                scroll={'paper'}
             >
                 <DialogTitle id="alert-dialog-title">
                     {'You are sure in this operation?'}
                 </DialogTitle>
                 <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        You will send transaction from address: ${} to $
-                        {transaction.address} in q-ty ${transaction.balance}ETH
+                    <DialogContentText
+                        id="alert-dialog-description"
+                        sx={{ wordWrap: 'break-word' }}
+                    >
+                        You will send transaction from address: ${address} to $
+                        {transaction.address} in q-ty ${transaction.balance} ETH
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
