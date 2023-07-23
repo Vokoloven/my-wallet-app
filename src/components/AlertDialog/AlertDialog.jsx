@@ -7,16 +7,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Loader } from '../Loader';
 import { sxButtonOutlined } from '../../theme';
+import { handleClose } from './alertDialogHandlers';
 
 export const AlertDialog = ({
-    props: {
-        open,
-        handleClose,
-        transaction,
-        address,
-        sendTransaction,
-        isLoading,
-    },
+    props: { open, transaction, address, sendTransaction, isLoading, setOpen },
 }) => {
     const handleSubmit = () => {
         sendTransaction();
@@ -26,7 +20,7 @@ export const AlertDialog = ({
         <div>
             <Dialog
                 open={open}
-                onClose={handleClose}
+                onClose={handleClose.bind(null, setOpen)}
                 aria-labelledby="alert-transaction"
                 aria-describedby="confirm-transaction"
                 disableAutoFocus

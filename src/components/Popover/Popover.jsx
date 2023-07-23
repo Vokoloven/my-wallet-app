@@ -2,10 +2,11 @@
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { handlePopoverOpen, handlePopoverClose } from './popoverHandlers';
 
 export const MouseOverPopover = ({
     children,
-    props: { anchorEl, handlePopoverOpen, handlePopoverClose, isConnected },
+    props: { anchorEl, isConnected, setAnchorEl },
 }) => {
     const open = Boolean(anchorEl);
 
@@ -14,8 +15,8 @@ export const MouseOverPopover = ({
             <Box
                 aria-owns={open ? 'mouse-over-popover' : undefined}
                 aria-haspopup="true"
-                onMouseEnter={handlePopoverOpen}
-                onMouseLeave={handlePopoverClose}
+                onMouseEnter={handlePopoverOpen.bind(null, setAnchorEl)}
+                onMouseLeave={handlePopoverClose.bind(null, setAnchorEl)}
             >
                 {children}
             </Box>
