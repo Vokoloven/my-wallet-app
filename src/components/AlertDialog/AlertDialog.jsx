@@ -5,10 +5,23 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Loader } from '../Loader';
+import { sxButtonOutlined } from '../../theme';
 
 export const AlertDialog = ({
-    props: { open, handleClose, transaction, address },
+    props: {
+        open,
+        handleClose,
+        transaction,
+        address,
+        sendTransaction,
+        isLoading,
+    },
 }) => {
+    const handleSubmit = () => {
+        sendTransaction();
+    };
+
     return (
         <div>
             <Dialog
@@ -32,9 +45,28 @@ export const AlertDialog = ({
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
-                    <Button onClick={handleClose} autoFocus>
-                        Agree
+                    <Button
+                        onClick={handleClose}
+                        sx={{ ...sxButtonOutlined() }}
+                        disabled={isLoading ? true : false}
+                    >
+                        Disagree
+                    </Button>
+                    <Button
+                        onClick={handleSubmit}
+                        sx={{ ...sxButtonOutlined() }}
+                        autoFocus
+                        disabled={isLoading ? true : false}
+                    >
+                        {isLoading ? (
+                            <Loader
+                                loading={isLoading}
+                                size={'1rem'}
+                                sx={{ color: 'secondary.dark' }}
+                            />
+                        ) : (
+                            'Agree'
+                        )}
                     </Button>
                 </DialogActions>
             </Dialog>

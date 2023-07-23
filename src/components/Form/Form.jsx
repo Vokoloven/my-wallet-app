@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Input } from '../../components/Input';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -9,17 +9,24 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from '../../validation';
 import { inputConverter } from './inputConverter';
 import { AlertDialog } from '../AlertDialog/AlertDialog';
-import { useFetchData } from '../../hooks';
+import { useFetchData, useTransaction } from '../../hooks';
 import { MouseOverPopover } from '../Popover';
 
 export const Form = () => {
     const { address, isConnected } = useFetchData();
     const [error, setError] = useState({});
     const [open, setOpen] = useState(false);
-    const [transaction, setTransaction] = useState({
-        address: '',
-        balance: '',
+    const [transaction, setTransaction] = useState(() => {
+        return { address: '', balance: '' };
     });
+    const {
+        sendTransaction,
+        isLoading,
+        error: err,
+        isError,
+        isSuccess,
+    } = useTransaction(transaction);
+
     const [anchorEl, setAnchorEl] = useState(null);
     const handlePopoverOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -40,17 +47,19 @@ export const Form = () => {
         setTransaction(data);
         setOpen(true);
         setError({});
-        // setTimeout(() => {
-        //     ['balance', 'address'].map((item) => setValue(item, ''));
-        // }, 0);
     };
 
     const onError = (errors) => setError(errors);
-
     const handleChange = (e) => {
         const { id, value } = e.target;
         inputConverter(id, value, setValue);
     };
+
+    useEffect(() => {
+        if (isError || isSuccess) {
+            setOpen(false);
+        }
+    }, [isError, isSuccess, setValue]);
 
     return (
         <>
@@ -90,7 +99,16 @@ export const Form = () => {
                     </Button>
                 </MouseOverPopover>
             </Box>
-            <AlertDialog props={{ handleClose, open, transaction, address }} />
+            <AlertDialog
+                props={{
+                    handleClose,
+                    open,
+                    transaction,
+                    address,
+                    sendTransaction,
+                    isLoading,
+                }}
+            />
         </>
     );
 };
