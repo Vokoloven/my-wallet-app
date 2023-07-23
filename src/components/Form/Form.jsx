@@ -26,6 +26,7 @@ export const Form = () => {
         error: err,
         isError,
         isSuccess,
+        data,
     } = useTransaction(transaction);
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -117,7 +118,7 @@ export const Form = () => {
                     isLoading,
                 }}
             />
-            <CustomizedSnackbar props={{ isError, isSuccess }} />
+            <CustomizedSnackbar props={{ isError, isSuccess, err, data }} />
         </>
     );
 };
