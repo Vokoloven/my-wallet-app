@@ -7,6 +7,7 @@ import { Home } from './pages/Home';
 import { WagmiConfig } from 'wagmi';
 import { wagmiConfig, ethereumClient } from './web3Modal';
 import { Web3Modal } from '@web3modal/react';
+import { web3ModalColors } from './theme';
 
 export const App = () => {
     const [ready, setReady] = useState(false);
@@ -28,11 +29,7 @@ export const App = () => {
                 <Web3Modal
                     projectId={import.meta.env.VITE_PROJECT_ID}
                     ethereumClient={ethereumClient}
-                    themeVariables={{
-                        '--w3m-accent-color': '#ab47bc',
-                        '--w3m-accent-fill-color': '#fff',
-                        '--w3m-background-color': '#ab47bc',
-                    }}
+                    themeVariables={{ ...web3ModalColors }}
                 />
             </ThemeProvider>
         </>
