@@ -11,7 +11,7 @@ export const handleButtonContent = (isConnected, address, Typography, data) => {
         if (balance === '0') {
             return `${balance}.000`;
         } else {
-            return balance.match(/\d.{4}/);
+            return balance.match(/(?:\d+)(?:\.)(?:\d{3})/);
         }
     };
 
