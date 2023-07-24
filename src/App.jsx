@@ -28,6 +28,11 @@ export const App = () => {
                 <Web3Modal
                     projectId={import.meta.env.VITE_PROJECT_ID}
                     ethereumClient={ethereumClient}
+                    themeVariables={{
+                        '--w3m-accent-color': '#ab47bc',
+                        '--w3m-accent-fill-color': '#fff',
+                        '--w3m-background-color': '#ab47bc',
+                    }}
                 />
             </ThemeProvider>
         </>
