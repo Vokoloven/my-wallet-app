@@ -6,7 +6,7 @@ const { address, balance } = regExp;
 export const schema = yup.object().shape({
     address: yup
         .string()
-        .matches(address, 'Wrong format: 0x(40 digits)')
+        .matches(address, 'Wrong format: 0x(40 digits a-f, A-F, 0-9)')
         .required(),
     balance: yup
         .string()
