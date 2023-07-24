@@ -30,8 +30,8 @@ export const AlertDialog = ({
                         id="alert-dialog-description"
                         sx={{ wordWrap: 'break-word' }}
                     >
-                        You will send transaction from address: ${address} to $
-                        {transaction.address} in q-ty ${transaction.balance} ETH
+                        You will send transaction from address: {address} to
+                        {transaction.address} in q-ty {transaction.balance} ETH
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
