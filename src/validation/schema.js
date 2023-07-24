@@ -10,6 +10,9 @@ export const schema = yup.object().shape({
         .required(),
     balance: yup
         .string()
-        .matches(balance, 'Please fill correct value: 0.000001 - 100000')
+        .matches(
+            balance,
+            'Please fill correct value: min 0.000001 - 100000 max'
+        )
         .required(),
 });
