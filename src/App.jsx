@@ -3,11 +3,13 @@ import { useFonts } from './hooks';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
-import { Home } from './pages/Home';
 import { WagmiConfig } from 'wagmi';
 import { wagmiConfig, ethereumClient } from './web3Modal';
 import { Web3Modal } from '@web3modal/react';
 import { web3ModalColors } from './theme';
+import { lazy, Suspense } from 'react';
+
+const Home = lazy(() => import('./pages/Home'));
 
 export const App = () => {
     const [ready, setReady] = useState(false);
@@ -23,7 +25,9 @@ export const App = () => {
             <ThemeProvider theme={theme}>
                 {ready ? (
                     <WagmiConfig config={wagmiConfig}>
-                        <Home />
+                        <Suspense fallback={'Loading...'}>
+                            <Home />
+                        </Suspense>
                     </WagmiConfig>
                 ) : null}
                 <Web3Modal

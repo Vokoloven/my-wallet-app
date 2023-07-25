@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import { Form } from '../../components/Form';
 import Box from '@mui/material/Box';
 
-export const Home = () => {
+const Home = () => {
     return (
         <Container maxWidth={'desktop'}>
             <CustomAppBar />
@@ -29,3 +29,5 @@ export const Home = () => {
         </Container>
     );
 };
+
+export default Home;
